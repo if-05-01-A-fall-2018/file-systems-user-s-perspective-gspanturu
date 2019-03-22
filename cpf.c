@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#define MAX_N 2
+#define MAX_CHARS_TO_WRITE 2
 struct stat attributes;
 
 int main(int argc, char const *argv[]) {
@@ -16,7 +16,7 @@ int main(int argc, char const *argv[]) {
   printf("Opening files \n" );
   int fd = open(argv[1],O_RDONLY);
   if(fd < 0){
-    printf("\Failed opening first file\n" );
+    printf("Failed opening first file\n" );
     return 0;
   }
 
@@ -31,11 +31,11 @@ int main(int argc, char const *argv[]) {
   printf("Both files opened successfully!\n" );
   int running = 0;
   while(running == 0){
-    char data[MAX_N];
+    char data[MAX_CHARS_TO_WRITE];
     printf("\n");
 
     int tmp = read(fd, data, sizeof(data));
-    if(tmp != MAX_N){
+    if(tmp != MAX_CHARS_TO_WRITE){
       running = -1;
     }
 
